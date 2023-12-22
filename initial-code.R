@@ -17,6 +17,7 @@ nhanes<- read_excel('12940_2020_642_MOESM2_ESM.xlsx', sheet = "Sheet1")
 xmod <- mpower::MixtureModel(data = nhanes[, chems], method = "resampling")
 #creates OutcomeModel object based on given relationship between variables
 obs_mod <- mpower::OutcomeModel(f = "0.16*dichlorophenol25 + 0.12*MEP", family = "gaussian")
+obs_mod <- mpower::OutcomeModel(f = "0.32*dichlorophenol25 + 0.24*MEP", family = "gaussian")
 #change chains in bws_mod InferenceModel to chains = 1 when using bws_mod for for loop 
 #creates InferenceModel objects for BWS and GLM models
 bws_mod <- InferenceModel(model = "bws", iter = 5000, chains = 2, refresh = 0, family = "gaussian")
