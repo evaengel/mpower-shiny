@@ -15,7 +15,6 @@
 
 ##app description
 #contains bws & glm & bkmr model simulation results
-#allows user to select significance threshold
 #allows user to select group of chemicals
 #allows user to select effect
 #allows user to select effect level
@@ -45,8 +44,8 @@ ui <- fluidPage(
                         #Input slider for sample size (goes in increments of 1)
                         sliderInput(inputId = "num", label = "Select a Sample Size", 
                                     value=20, min=20, max=2000, step = 1),
-                        sliderInput(inputId = "thres", label = "Select a 'Significance' Threshold",
-                                    value=0.05, min=0, max=1, step = 0.01),
+                        #sliderInput(inputId = "thres", label = "Select a 'Significance' Threshold",
+                                    #value=0.05, min=0, max=1, step = 0.01),
                         selectInput(inputId = "group", label = "Select a Group of Chemicals",
                                     c("Consumer products chemicals")),
                         selectInput(inputId = "effect", label = "Select an Effect",
