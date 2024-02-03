@@ -9,6 +9,8 @@ To download and run the app in R, run:
 ```{r}
 shiny::runGitHub("mpower-shiny", "evaengel")
 ```
+Note: Many files end with the word "small" or "large." Files ending in "small" contain data associated with small effect sizes. Files ending in "large" contain data associated with large effect sizes. 
+
 ## How can we make the app more useful to you?
 
 This Shiny app is still under development. We would like to know what chemicals, effect sizes, inference models researchers would find most useful to include in the app. You can submit your suggestions through this Google form: https://forms.gle/xYx2hXWQbfZx7ZJC8.
