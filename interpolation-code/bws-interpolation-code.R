@@ -17,7 +17,7 @@ zdataframe <- data.frame(x = z$x, y = z$y)
 #labels z$x column as Sample_Size and z$y column as Power
 colnames(zdataframe) <- c("Sample_Size","Power")
 #write results into csv
-write.csv(zdataframe,"bws-interpolation-results/bws-interpolation-small.csv",row.names = TRUE)
+write.csv(zdataframe,"bws-interpolation-results/bws-interpolation-results-small.csv",row.names = TRUE)
 
 ## for large effect sizes
 #read in bws simulation results for large effect sizes
@@ -38,4 +38,4 @@ zdataframe <- data.frame(x = z$x, y = z$y)
 #labels z$x column as Sample_Size and z$y column as Power
 colnames(zdataframe) <- c("Sample_Size","Power")
 #write results into csv
-write.csv(zdataframe,"bws-interpolation-results/bws-interpolation-large.csv",row.names = TRUE)
+write.csv(zdataframe,"bws-interpolation-results/bws-interpolation-results-large.csv",row.names = TRUE)

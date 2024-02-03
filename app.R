@@ -71,7 +71,7 @@ nhanes1 <- read.csv("data/nhanes-data.csv")
 nhanes2 <- nhanes1[,c(2:10)]
 
 #reads in csv for bws simulation results
-modelsa <- read.csv("data/bws-simulation-data.csv")
+modelsa <- read.csv("data/bws-simulation-data.csv") # used to be results of bws interpolation, need to change for small effect sizes
 #turns results into dataframe
 modelsb <- as.data.frame(modelsa)
 #selects useful columns in dataframe (sample size and power)
