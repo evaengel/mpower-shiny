@@ -1,6 +1,6 @@
 
 ##for large effect size
-#read in glm simulation results for large effect size
+#read in bkmr simulation results for large effect size
 models <- read.csv("data/dataBKMR_large.csv")
 models2 <- as.data.frame(models)
 #select useful columns in dataframe
@@ -211,7 +211,7 @@ write.csv(combined,"bkmr-interpolation-results/bkmr-interpolation-results-large.
 
 
 ##for small effect size
-#read in glm simulation results for small effect size
+#read in bkmr simulation results for small effect size
 models <- read.csv("data/dataBKMR_small.csv")
 models2 <- as.data.frame(models)
 #select useful columns in dataframe
