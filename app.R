@@ -25,7 +25,7 @@
         #dichlorophenol24, MBzP, MEP, MiBP
 
 
-#library packages needed for app
+#libraries needed for app
 library(shiny)
 library(mpower)
 library(readxl)
