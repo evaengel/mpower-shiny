@@ -33,6 +33,7 @@ library(bws)
 library(reshape2)
 library(tidyverse)
 library(DT)
+library(dplyr)
 ui <- fluidPage(
         #adds title
         titlePanel(h1("Power Analysis via Monte Carlo Simulation", align = "center")),
@@ -50,17 +51,20 @@ ui <- fluidPage(
                                     c("Consumer products chemicals")),
                         selectInput(inputId = "effect", label = "Select an Effect",
                                     c("Linear, additive")),
-                        selectInput(inputId = "effectsize", label = "Select an Effect Size", c("Small","Large"))
+                        selectInput(inputId = "effectsize", label = "Select an Effect Size", c("Small","Large")),
                 ),
                 #Output() function (creates datatable and plot as output)
                 mainPanel(
                         fluidRow(
-                                column(width = 6, dataTableOutput(outputId= "table")),
+                                column(width = 6, dataTableOutput(outputId= "table"), textOutput(outputId = "description")),
                                 withMathJax(),
                                 column(width = 6,
                                        HTML("<b>Correlation Matrix of the Chemicals:</b>"),
                                        plotOutput(outputId = "plot"),
-                                       HTML("<b>The True Outcome Model:</b> $$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$")
+                                       HTML("<b>The True Outcome Model:</b>"),
+                                       htmlOutput(outputId = "text1"),
+                                       htmlOutput(outputId = "text2"),
+                                       HTML("<b>Description and Purpose of App:<b>")
                                 )
                         )
                 )
@@ -140,7 +144,7 @@ server <- function(input, output){
                           rownames = FALSE) %>% 
                         formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))
                 #create datatable for bws, highlight cell yellow if power is > 0.8
-        }else if (input$sct == "GLM" && input$effectsize == "Small") {
+        } else if (input$sct == "GLM" && input$effectsize == "Small") {
                 #create datatable for glm, highlight cell yellow if power is > 0.8
                 datatable(glm_small[(glm_small[,"Sample Size"] == input$num),],
                           rownames = FALSE) %>% 
@@ -153,13 +157,15 @@ server <- function(input, output){
                 datatable(bws_small[(bws_small[,"Sample Size"] == input$num),],
                           rownames = FALSE) %>% 
                         formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))}
-        else if (input$sct == "BKMR" && input$effectsize == "Large") {
+        else if (input$sct == "BKMR" && input$effectsize == "Large" && input$num <= 600) {
                 datatable(bkmr_large[(bkmr_large[,"Sample Size"] == input$num),],
                           rownames = FALSE) %>% 
                         formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))}
-        else {datatable(bkmr_small[(bkmr_small[,"Sample Size"] == input$num),],
+        else if (input$sct == "BKMR" && input$effectsize == "Small" && input$num <= 600) {
+                datatable(bkmr_small[(bkmr_small[,"Sample Size"] == input$num),],
                         rownames = FALSE) %>% 
-                        formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))});
+                        formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))}
+        else {print(dplyr::tibble("Issue" = "Cannot run BKMR simulations for sample sizes greater than 600 due to computing power limitations."))});
         
         #uses nhanes2 to plot correlation matrix
         output$plot <- renderPlot(nhanes2 %>%
@@ -174,8 +180,12 @@ server <- function(input, output){
                                                 panel.grid.major = element_blank(),
                                                 panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank()) +
-                                          coord_fixed() + labs(x = "", y = ""))
-        
+                                          coord_fixed() + labs(x = "", y = ""));
+        output$text1 <- renderUI(
+                if(input$effectsize == "Large") {
+                HTML("$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$")});
+        output$text2 <- renderUI(if(input$effectsize == "Small") {
+                HTML("$$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$")})
 }
 #creates Shiny app
 shinyApp(ui = ui, server = server)

@@ -24,6 +24,24 @@ obs_mod_large <- mpower::OutcomeModel(f = "0.32*dichlorophenol25 + 0.24*MEP", fa
 # define the BKMR inference model
 bkmr_mod <- mpower::InferenceModel(model = "bkmr", iter = 2000, varsel = TRUE, family = "gaussian")
 
+##code to run bkmr model small effect size for sample sizes 550 and 600 
+#df <- as.data.frame(read.csv("data/dataBKMR_small.csv"))
+#df <- df[,2:6]
+# run simulation for sample size of 550 using 2 cores
+#bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bkmr_mod, s=100, n=550, cores=2)
+#stores tabular summary of power curve as dataframe
+#ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
+#adds new summary to dataframe of previous summaries
+#df <- rbind(df, ab)
+# run simulation for sample size of 600 using 2 cores
+#bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bkmr_mod, s=100, n=600, cores=2)
+#stores tabular summary of power curve as dataframe
+#ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
+#adds new summary to dataframe of previous summaries
+#df <- rbind(df, ab)
+#saves dataframe to csv
+#write.csv(df,"data/dataBKMR_small.csv",row.names = TRUE)
+
 #for loop for bkmr model of small effect
 df <- data.frame()
 for(i in 1:50){
@@ -36,6 +54,25 @@ for(i in 1:50){
 }
 #saves dataframe to csv
 write.csv(df,"data/dataBKMR_small.csv",row.names = TRUE)
+
+
+##code to run bkmr model large effect size for sample sizes 550 and 600 
+#df <- as.data.frame(read.csv("data/dataBKMR_large.csv"))
+#df <- df[,2:6]
+# run simulation for sample size of 550 using 2 cores
+#bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bkmr_mod, s=100, n=550, cores=2)
+#stores tabular summary of power curve as dataframe
+#ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
+#adds new summary to dataframe of previous summaries
+#df <- rbind(df, ab)
+# run simulation for sample size of 600 using 2 cores
+#bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bkmr_mod, s=100, n=600, cores=2)
+#stores tabular summary of power curve as dataframe
+#ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
+#adds new summary to dataframe of previous summaries
+#df <- rbind(df, ab)
+#saves dataframe to csv
+#write.csv(df,"data/dataBKMR_large.csv",row.names = TRUE)
 
 #for loop for bkmr model of large effect
 df <- data.frame()
