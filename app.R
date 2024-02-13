@@ -62,8 +62,7 @@ ui <- fluidPage(
                                        HTML("<b>Correlation Matrix of the Chemicals:</b>"),
                                        plotOutput(outputId = "plot"),
                                        HTML("<b>The True Outcome Model:</b>"),
-                                       htmlOutput(outputId = "text1"),
-                                       htmlOutput(outputId = "text2"),
+                                       uiOutput(outputId = "formula"),
                                        HTML("<b>Description and Purpose of App:<b>")
                                 )
                         )
@@ -181,11 +180,13 @@ server <- function(input, output){
                                                 panel.grid.minor = element_blank(), 
                                                 panel.background = element_blank()) +
                                           coord_fixed() + labs(x = "", y = ""));
-        output$text1 <- renderUI(
-                if(input$effectsize == "Large") {
-                HTML("$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$")});
-        output$text2 <- renderUI(if(input$effectsize == "Small") {
-                HTML("$$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$")})
+        output$formula <- renderUI({
+          text <- switch(input$effectsize,
+            Small = "$$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$",
+            Large = "$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$"
+          )
+          withMathJax(text)
+          });
 }
 #creates Shiny app
 shinyApp(ui = ui, server = server)
