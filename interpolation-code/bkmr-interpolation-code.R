@@ -225,7 +225,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -240,7 +240,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -255,7 +255,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -270,7 +270,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -285,7 +285,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -300,7 +300,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -315,7 +315,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -330,7 +330,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -345,7 +345,7 @@ samplesize <- UR$n
 #select power
 pow <- UR$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=10:600, method= 'linear')
+z <- approx(samplesize, pow, xout=10:1000, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 colnames(zdataframe) <- c("Sample_Size","Power")
@@ -357,61 +357,61 @@ write.csv(zdataframe,"bkmr-interpolation-results/MiBP_small.csv",row.names = TRU
 #reads in csv
 UrinaryBisphenolA1 <- read.csv("bkmr-interpolation-results/UrinaryBisphenolA_small.csv")
 #labels dataframe with chemical name
-UrinaryBisphenolA2 <- cbind(rep("UrinaryBisphenolA", times = 591),UrinaryBisphenolA1[,c(2,3)])
+UrinaryBisphenolA2 <- cbind(rep("UrinaryBisphenolA", times = 991),UrinaryBisphenolA1[,c(2,3)])
 colnames(UrinaryBisphenolA2)[1] <- "Chemical"
 
 #reads in csv
 UrinaryBenzophenone31 <- read.csv("bkmr-interpolation-results/UrinaryBenzophenone3_small.csv")
 #labels dataframe with chemical name
-UrinaryBenzophenone32 <- cbind(rep("UrinaryBenzophenone3", times = 591),UrinaryBenzophenone31[,c(2,3)])
+UrinaryBenzophenone32 <- cbind(rep("UrinaryBenzophenone3", times = 991),UrinaryBenzophenone31[,c(2,3)])
 colnames(UrinaryBenzophenone32)[1] <- "Chemical"
 
 #reads in csv
 Methylparaben1 <- read.csv("bkmr-interpolation-results/Methylparaben_small.csv")
 #labels dataframe with chemical name
-Methylparaben2 <- cbind(rep("Methylparaben", times = 591),Methylparaben1[,c(2,3)])
+Methylparaben2 <- cbind(rep("Methylparaben", times = 991),Methylparaben1[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(Methylparaben2)[1] <- "Chemical"
 
 #reads in csv
 Propylparaben1 <- read.csv("bkmr-interpolation-results/Propylparaben_small.csv")
 #labels dataframe with chemical name
-Propylparaben2 <- cbind(rep("Propylparaben", times = 591),Propylparaben1[,c(2,3)])
+Propylparaben2 <- cbind(rep("Propylparaben", times = 991),Propylparaben1[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(Propylparaben2)[1] <- "Chemical"
 
 #reads in csv
 dichlorophenol251 <- read.csv("bkmr-interpolation-results/dichlorophenol25_small.csv")
 #labels dataframe with chemical name
-dichlorophenol252 <- cbind(rep("dichlorophenol25", times = 591),dichlorophenol251[,c(2,3)])
+dichlorophenol252 <- cbind(rep("dichlorophenol25", times = 991),dichlorophenol251[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(dichlorophenol252)[1] <- "Chemical"
 
 #reads in csv
 dichlorophenol241 <- read.csv("bkmr-interpolation-results/dichlorophenol24_small.csv")
 #labels dataframe with chemical name
-dichlorophenol242 <- cbind(rep("dichlorophenol24", times = 591),dichlorophenol241[,c(2,3)])
+dichlorophenol242 <- cbind(rep("dichlorophenol24", times = 991),dichlorophenol241[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(dichlorophenol242)[1] <- "Chemical"
 
 #reads in csv
 MBzP1 <- read.csv("bkmr-interpolation-results/MBzP_small.csv")
 #labels dataframe with chemical name
-MBzP2 <- cbind(rep("MBzP", times = 591),MBzP1[,c(2,3)])
+MBzP2 <- cbind(rep("MBzP", times = 991),MBzP1[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(MBzP2)[1] <- "Chemical"
 
 #reads in csv
 MEP1 <- read.csv("bkmr-interpolation-results/MEP_small.csv")
 #labels dataframe with chemical name
-MEP2 <- cbind(rep("MEP", times = 591),MEP1[,c(2,3)])
+MEP2 <- cbind(rep("MEP", times = 991),MEP1[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(MEP2)[1] <- "Chemical"
 
 #reads in csv
 MiBP1 <- read.csv("bkmr-interpolation-results/MiBP_small.csv")
 #labels dataframe with chemical name
-MiBP2 <- cbind(rep("MiBP", times = 591),MiBP1[,c(2,3)])
+MiBP2 <- cbind(rep("MiBP", times = 991),MiBP1[,c(2,3)])
 #names column with chemical name "Chemical"
 colnames(MiBP2)[1] <- "Chemical"
 

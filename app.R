@@ -160,11 +160,11 @@ server <- function(input, output){
                 datatable(bkmr_large[(bkmr_large[,"Sample Size"] == input$num),],
                           rownames = FALSE) %>% 
                         formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))}
-        else if (input$sct == "BKMR" && input$effectsize == "Small" && input$num <= 600) {
+        else if (input$sct == "BKMR" && input$effectsize == "Small" && input$num <= 1000) {
                 datatable(bkmr_small[(bkmr_small[,"Sample Size"] == input$num),],
                         rownames = FALSE) %>% 
                         formatStyle('Power', backgroundColor = styleInterval(c(0.8,1.0), c("white","yellow","white")))}
-        else {print(dplyr::tibble("Issue" = "Cannot run BKMR simulations for sample sizes greater than 600 due to computing power limitations."))});
+        else {print(dplyr::tibble("Issue" = "Cannot run BKMR simulations for sample sizes greater than 600 (large effect sizes) or 1000 (small effect sizes) due to computing power limitations."))});
         
         #uses nhanes2 to plot correlation matrix
         output$plot <- renderPlot(nhanes2 %>%
