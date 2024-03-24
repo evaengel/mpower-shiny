@@ -12,9 +12,11 @@ opd_df <- opd_df %>%
 
 #names variables we want to study
 chems <- c("DEP", "DMP", "DAP")
+xmod_df <- opd_df[, chems] %>%
+  filter(complete.cases(.))
 
 #creates MixtureModel object
-xmod <- mpower::MixtureModel(data = opd_df[, chems], method = "resampling")
+xmod <- mpower::MixtureModel(data = xmod_df, method = "resampling")
 
 #creates OutcomeModel object based on given relationship between variables (select between small and large effect)
 # small effect estimates are from this paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4892910/
