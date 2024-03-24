@@ -21,6 +21,8 @@ xmod <- mpower::MixtureModel(data = opd_df[, chems], method = "resampling")
 obs_mod_small <- mpower::OutcomeModel(f = "-4.17*log10(DAP) - 3.64*log10(DMP)", family = "gaussian")
 obs_mod_large <- mpower::OutcomeModel(f = "–7.00*log10(DAP) + –5.97*log10(DMP)", family = "gaussian")
 
+#simulation params
+s <- 100
 
 ##inference models
 
@@ -61,7 +63,7 @@ bws_mod <- InferenceModel(model = "bws", iter = 5000, chains = 2, refresh = 0, f
 dfa <- data.frame()
 for(i in seq(from = 20, to= 2220, by = 100)){
   #creates power curve for bws model
-  bws_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bws_mod, s=1000, n=i, cores=2)
+  bws_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bws_mod, s=s, n=i, cores=2)
   #saves tabular summary of power curve as dataframe
   ab <- as.data.frame(summary(bws_out, crit = "beta", thres = 0.05, how = "lesser"))
   #creates new column and puts sample size in it
@@ -78,7 +80,7 @@ write.csv(df,"data/output_opd_bws_small.csv", row.names = TRUE)
 dfa <- data.frame()
 for(i in seq(from = 20, to= 2220, by = 100)){
   #creates power curve for bws model
-  bws_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bws_mod, s=1000, n=i, cores=2)
+  bws_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bws_mod, s=s, n=i, cores=2)
   #saves tabular summary of power curve as dataframe
   ab <- as.data.frame(summary(bws_out, crit = "beta", thres = 0.05, how = "lesser"))
   #creates new column and puts sample size in it
@@ -101,7 +103,7 @@ bkmr_mod <- mpower::InferenceModel(model = "bkmr", iter = 2000, varsel = TRUE, f
 df <- data.frame()
 for(i in 1:50){
   # run simulation for 100 iterations, for a sample size of 10, using 2 cores
-  bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bkmr_mod, s=100, n=(10*i), cores=2)
+  bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bkmr_mod, s=s, n=(10*i), cores=2)
   #stores tabular summary of power curve as dataframe
   ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
   #adds new summary to dataframe of previous summaries
@@ -115,7 +117,7 @@ write.csv(df,"data/output_opd_bkmr_small.csv",row.names = TRUE)
 df <- data.frame()
 for(i in 1:50){
   # run simulation for 100 iterations, for a sample size of 10, using 2 cores
-  bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bkmr_mod, s=100, n=(10*i), cores=2)
+  bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bkmr_mod, s=s, n=(10*i), cores=2)
   #stores tabular summary of power curve as dataframe
   ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
   #adds new summary to dataframe of previous summaries
