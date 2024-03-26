@@ -11,7 +11,7 @@ opd_df <- opd_df %>%
   mutate(DAP=DEP+DMP)
 
 #names variables we want to study
-chems <- c("DEP", "DMP", "DAP")
+chems <- c("URXOP2","URXOP4", "URXOP6", "URXOP1", "URXOP3", "URXOP5")
 xmod_df <- opd_df[, chems] %>%
   filter(complete.cases(.))
 
@@ -20,8 +20,8 @@ xmod <- mpower::MixtureModel(data = xmod_df, method = "resampling")
 
 #creates OutcomeModel object based on given relationship between variables (select between small and large effect)
 # small effect estimates are from this paper: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4892910/
-obs_mod_small <- mpower::OutcomeModel(f = "-4.17*log10(DAP) - 3.64*log10(DMP)", family = "gaussian")
-obs_mod_large <- mpower::OutcomeModel(f = "–7.00*log10(DAP) + –5.97*log10(DMP)", family = "gaussian")
+obs_mod_small <- mpower::OutcomeModel(f = "-4.17*log10(URXOP2 + URXOP4 + URXOP6 + URXOP1 + URXOP3 + URXOP5) - 3.64*log10(URXOP1 + URXOP3 + URXOP5)", family = "gaussian")
+obs_mod_large <- mpower::OutcomeModel(f = "-7.00*log10(URXOP2 + URXOP4 + URXOP6 + URXOP1 + URXOP3 + URXOP5) - 5.97*log10(URXOP1 + URXOP3 + URXOP5)", family = "gaussian")
 
 #simulation params
 s <- 100
@@ -104,7 +104,7 @@ bkmr_mod <- mpower::InferenceModel(model = "bkmr", iter = 2000, varsel = TRUE, f
 #for loop for bkmr model of SMALL effect
 df <- data.frame()
 for(i in 1:50){
-  # run simulation for 100 iterations, for a sample size of 10, using 2 cores
+  # run simulation for 100 iterations, for a sample size of 10*i, using 2 cores
   bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_small, imod=bkmr_mod, s=s, n=(10*i), cores=2)
   #stores tabular summary of power curve as dataframe
   ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
@@ -118,7 +118,7 @@ write.csv(df,"data/output_opd_bkmr_small.csv",row.names = TRUE)
 #for loop for bkmr model of LARGE effect
 df <- data.frame()
 for(i in 1:50){
-  # run simulation for 100 iterations, for a sample size of 10, using 2 cores
+  # run simulation for 100 iterations, for a sample size of 10*i, using 2 cores
   bkmr_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bkmr_mod, s=s, n=(10*i), cores=2)
   #stores tabular summary of power curve as dataframe
   ab <- as.data.frame(mpower::summary(bkmr_out, crit = "pip", thres = 0.5, how = "greater"))
