@@ -294,9 +294,8 @@ server <- function(input, output){
         else if (input$group == "Organophosphate insecticides") {
                 print(dplyr::tibble("Issue" = "Cannot run BKMR simulations for sample sizes greater than 500 due to computing power limitations."))});
         
-        #uses nhanes2 to plot correlation matrix
         output$plot <- renderPlot(
-                if(input$group == "Consumer products chemicals"){
+                if(input$group == "Consumer products chemicals"){ #uses nhanes2 to plot correlation matrix
                         nhanes2 %>%
                                 cor() %>%
                                 reshape2::melt() %>%
@@ -330,10 +329,12 @@ server <- function(input, output){
                                            Small = "$$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$",
                                            Large = "$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$"),
                          'Organophosphate insecticides' = switch(input$effectsize,
-                                        Small = "$$-4.17*log10(Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate + Dimethylphosphate
-                                        + Dimethylthiophosphate + Dimethyldithiophosphate) - 3.64*log10(Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate)$$",
-                                        Large = "$$-7.00*log10(Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate + Dimethylphosphate
-                                        + Dimethylthiophosphate + Dimethyldithiophosphate) - 5.97*log10(Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate)$$"))
+                                        Small = "$$-4.17*log_{10}(DAP) - 3.64*log_{10}(DMP)$$\n 
+                                        $$DAP = Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate$$\n $$+ Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$\n
+                                        $$DMP = Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$",
+                                        Large = "$$-7.00*log_{10}(DAP) - 5.97*log_{10}(DMP)$$\n
+                                        $$DAP = Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate$$\n $$+ Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$\n
+                                        $$DMP = Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$"))
           withMathJax(text)
           });
 }

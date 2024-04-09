@@ -76,7 +76,7 @@ for(i in seq(from = 20, to= 2220, by = 100)){
   #saves dataframe to csv
   write.csv(dfa,"data/output_opd_bws_small.csv",row.names = TRUE)
 }
-write.csv(df,"data/output_opd_bws_small.csv", row.names = TRUE)
+write.csv(dfa,"data/output_opd_bws_small.csv", row.names = TRUE)
 
 # LARGE effect
 dfa <- data.frame()
@@ -94,7 +94,7 @@ for(i in seq(from = 1820, to = 2220, by = 100)) {
   #saves dataframe to csv
   write.csv(dfa,"data/output_opd_bws_large.csv",row.names = TRUE)
 }
-write.csv(df,"data/output_opd_bws_large.csv", row.names = TRUE)
+write.csv(dfa,"data/output_opd_bws_large.csv", row.names = TRUE)
 
 
 
