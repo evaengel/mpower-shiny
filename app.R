@@ -330,11 +330,17 @@ server <- function(input, output){
                                            Large = "$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$"),
                          'Organophosphate insecticides' = switch(input$effectsize,
                                         Small = "$$-4.17*log_{10}(DAP) - 3.64*log_{10}(DMP)$$\n 
-                                        $$DAP = Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate$$\n $$+ Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$\n
-                                        $$DMP = Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$",
+                                        $$DAP = Diethylphosphate + Diethylthiophosphate$$\n
+                                        $$+ Diethyldithiophosphate + Dimethylphosphate$$\n
+                                        $$+ Dimethylthiophosphate + Dimethyldithiophosphate$$\n
+                                        $$DMP = Dimethylphosphate + Dimethylthiophosphate$$\n
+                                        $$+ Dimethyldithiophosphate$$\n",
                                         Large = "$$-7.00*log_{10}(DAP) - 5.97*log_{10}(DMP)$$\n
-                                        $$DAP = Diethylphosphate + Diethylthiophosphate + Diethyldithiophosphate$$\n $$+ Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$\n
-                                        $$DMP = Dimethylphosphate + Dimethylthiophosphate + Dimethyldithiophosphate$$"))
+                                        DAP = Diethylphosphate + Diethylthiophosphate\n
+                                        + Diethyldithiophosphate + Dimethylphosphate\n
+                                        + Dimethylthiophosphate + Dimethyldithiophosphate\n
+                                        DMP = Dimethylphosphate + Dimethylthiophosphate\n
+                                        + Dimethyldithiophosphate\n"))
           withMathJax(text)
           });
 }
