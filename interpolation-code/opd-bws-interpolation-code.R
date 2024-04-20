@@ -6,7 +6,7 @@ modelsc <- modelsb[,2:6]
 
 ##Interpolation for bws simulations
 #select sample sizes
-samplesize <- c(modelsc$n,2000)
+samplesize <- c(modelsc$Sample.Size,2000)
 #select power
 pow <- c(modelsc$power,1)
 #interpolate for power
@@ -27,7 +27,7 @@ modelsc <- modelsb[,2:6]
 
 ##Interpolation for bws simulations
 #select sample sizes
-samplesize <- c(modelsc$n,2000)
+samplesize <- c(modelsc$Sample.Size,2000)
 #select power
 pow <- c(modelsc$power,1)
 #interpolate for power
