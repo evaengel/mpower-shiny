@@ -6,11 +6,11 @@ modelsc <- modelsb[,2:6]
 
 ##Interpolation for bws simulations
 #select sample sizes
-samplesize <- c(modelsc$Sample.Size,2000)
+samplesize <- modelsc$Sample.Size
 #select power
-pow <- c(modelsc$power,1)
+pow <- modelsc$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=20:2000, method= 'linear')
+z <- approx(samplesize, pow, xout=20:2220, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 #labels z$x column as Sample_Size and z$y column as Power
@@ -27,11 +27,11 @@ modelsc <- modelsb[,2:6]
 
 ##Interpolation for bws simulations
 #select sample sizes
-samplesize <- c(modelsc$Sample.Size,2000)
+samplesize <- modelsc$Sample.Size
 #select power
-pow <- c(modelsc$power,1)
+pow <- modelsc$power
 #interpolate for power
-z <- approx(samplesize, pow, xout=20:2000, method= 'linear')
+z <- approx(samplesize, pow, xout=20:2220, method= 'linear')
 #store interpolation results as data frame
 zdataframe <- data.frame(x = z$x, y = z$y)
 #labels z$x column as Sample_Size and z$y column as Power

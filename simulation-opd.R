@@ -80,8 +80,7 @@ write.csv(dfa,"data/output_opd_bws_small.csv", row.names = TRUE)
 
 # LARGE effect
 dfa <- data.frame()
-# for(i in seq(from = 20, to= 2220, by = 100)){
-for(i in seq(from = 1820, to = 2220, by = 100)) {
+for(i in seq(from = 20, to= 2220, by = 100)){
   #creates power curve for bws model
   bws_out <- mpower::sim_curve(xmod=xmod, ymod=obs_mod_large, imod=bws_mod, s=s, n=i, cores=2)
   #saves tabular summary of power curve as dataframe
