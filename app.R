@@ -329,13 +329,13 @@ server <- function(input, output){
                                            Small = "$$y = 0.16 x_{2,5DCP} + 0.12 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$",
                                            Large = "$$y = 0.32 x_{2,5DCP} + 0.24 x_{MEP} + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$"),
                          'Organophosphate insecticides' = switch(input$effectsize,
-                                        Small = "$$y = -4.17 log_{10}(x_{DAP}) - 3.64 log_{10}(x_{DMP})$$\n 
+                                        Small = "$$y = -4.17 log_{10}(x_{DAP}) - 3.64 log_{10}(x_{DMP}) + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$\n 
                                         DAP = Diethylphosphate + Diethylthiophosphate\n
                                         + Diethyldithiophosphate + Dimethylphosphate\n
                                         + Dimethylthiophosphate + Dimethyldithiophosphate\n
                                         DMP = Dimethylphosphate + Dimethylthiophosphate\n
                                         + Dimethyldithiophosphate\n",
-                                        Large = "$$y = -7.00 log_{10}(x_{DAP}) - 5.97 log_{10}(x_{DMP})$$\n
+                                        Large = "$$y = -7.00 log_{10}(x_{DAP}) - 5.97 log_{10}(x_{DMP}) + \\epsilon$$ $$\\epsilon \\sim N(0, 1)$$\n
                                         DAP = Diethylphosphate + Diethylthiophosphate\n
                                         + Diethyldithiophosphate + Dimethylphosphate\n
                                         + Dimethylthiophosphate + Dimethyldithiophosphate\n
